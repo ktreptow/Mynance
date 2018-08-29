@@ -1,0 +1,5 @@
+{
+    "http.proxy": "http://proxylb.system.local",
+    "http.proxyStrictSSL": false,
+    "http.proxyAuthorization": "Basic ZnRwX2FudGl2aXJ1czptY2FmZWUK",
+}
