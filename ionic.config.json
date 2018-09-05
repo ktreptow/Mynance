@@ -1,14 +1,8 @@
 {
-  "name": "mynance",
+  "name": "MynanceNew",
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic1",
-  "watchPatterns": [
-    "scss/**/*",
-    "www/**/*",
-    "!www/lib/**/*",
-    "!www/**/*.map"
-  ],
-  "pro_id": "dad7335b"
+  "type": "angular",
+  "pro_id": "51453acb"
 }
