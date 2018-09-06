@@ -3,7 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
 import { HomePage } from '../home/home.page';
-import { ContactPage } from '../contact/contact.page';
+import { BalancePage } from '../balance/balance.page';
+import { TransactionsPage } from '../transactions/transactions.page';
+import { PlansPage } from '../plans/plans.page';
 
 const routes: Routes = [
   {
@@ -21,9 +23,19 @@ const routes: Routes = [
         component: HomePage
       },
       {
-        path: 'contact',
-        outlet: 'contact',
-        component: ContactPage
+        path: 'balance',
+        outlet: 'balance',
+        component: BalancePage
+      },
+      {
+        path: 'transactions',
+        outlet: 'transactions',
+        component: TransactionsPage
+      },
+      {
+        path: 'plans',
+        outlet: 'plans',
+        component: PlansPage
       }
     ]
   },
