@@ -5,22 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item>
-      <ion-label color="primary" position="floating">Gesamtsparbetrag</ion-label>
-      <ion-input type="number"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Zu sparen bis:</ion-label>
-      <ion-datetime display-format="DD.MM.YYYY"></ion-dateTime>
-    </ion-item>
-    <ion-item>
-      <ion-select>
-        <ion-select-option value="1">Monatlich</ion-select-option>
-        <ion-select-option value="3">Vierteljährlich</ion-select-option>
-        <ion-select-option value="6">Halbjährlich</ion-select-option>
-        <ion-select-option value="12">Jährlich</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="button" href="../plansAdd">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
