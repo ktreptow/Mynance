@@ -1,10 +1,46 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Home</ion-title>
+    <ion-title id="header">MYNANC€</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs">docs</a> will be your guide.</p>
+<ion-content padding class="background">
+<div id="content">
+<div class="fadeInDown" id="headline">
+Willkommen bei MYNANC€! Dein mobiler Planer zum Geld sparen €¥$
+</div>
+</div>
+
+<ion-list class="transactionList">
+<ion-list-header>Letzte Transaktionen:</ion-list-header>
+  <ion-item>
+    <ion-label>
+      Spiele
+    </ion-label>
+    <div item-content>
+      <p style="color:red">- 250€ </p>
+    </div>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Ersparnisse
+    </ion-label>
+    <div item-content>
+      <p style="color:green">+ 150€ </p>
+    </div>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Essen
+    </ion-label>
+    <div item-content>
+      <p style="color:red">- 20€ </p>
+    </div>
+  </ion-item>
+</ion-list>
 </ion-content>
+
+
+
