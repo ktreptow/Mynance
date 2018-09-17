@@ -1,0 +1,18 @@
+### ApacheCordova ###
+# Apache Cordova generated files and directories
+bin/*
+!/plugins
+!/plugins/android.json
+!/plugins/fetch.json
+plugins/*
+platforms/*
+hooks/*
+temp/*
+tmp/*
+node_modules/*
+dist/*
+.versions/*
+e2e/*
+www/*
+.project
+.settings/*
