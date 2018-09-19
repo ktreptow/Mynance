@@ -24,7 +24,6 @@ export class AppComponent {
     this.initializeApp();
 
     this.backButtonEvent();
-    console.log(this.router.url);
 
   }
 
@@ -38,10 +37,9 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-  //TODO
   backButtonEvent() {
-    if (this.router.url === '/tabs/(home:home)') {
-      this.platform.backButton.subscribe(async () => {
+    this.platform.backButton.subscribe(async () => {
+      if (this.router.url == '/tabs/(home:home)') {
         if (new Date().getTime() - this.lastTimeBackPressed < this.timePeriodToExit) {
           //Schließen der App
           navigator['app'].exitApp();
@@ -55,8 +53,8 @@ export class AppComponent {
           toast.present();
           this.lastTimeBackPressed = new Date().getTime();
         }
-      });
-    }
+      }
+    });
   }
 
 
