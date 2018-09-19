@@ -1,5 +1,6 @@
 ### ApacheCordova ###
 # Apache Cordova generated files and directories
+
 bin/*
 !/plugins
 !/plugins/android.json
