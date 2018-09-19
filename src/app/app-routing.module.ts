@@ -6,9 +6,11 @@ const routes: Routes = [
   { path: 'plans', loadChildren: './plans/plans.module#PlansPageModule' },
   { path: 'transactions', loadChildren: './transactions/transactions.module#TransactionsPageModule' },
   { path: 'balance', loadChildren: './balance/balance.module#BalancePageModule' },
+  { path: 'plansAdd', loadChildren: './plans-add/plans-add.module#PlansAddPageModule' },
+  { path: 'home', loadChildren: './home/home.module#HomePageModule' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
