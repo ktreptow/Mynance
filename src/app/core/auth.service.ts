@@ -1,13 +1,16 @@
-import {Injectable} from '@angular/core';
-import {Router} from '@angular/router';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
-import {auth} from 'firebase';
-import {AngularFireAuth} from 'angularfire2/auth';
-import {AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
+import { auth } from 'firebase';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFirestore, AngularFirestoreDocument } from 'angularfire2/firestore';
 
-import {Observable, of} from 'rxjs';
-import {switchMap} from 'rxjs/operators';
-import {User} from './user';
+import { Platform } from '@ionic/angular';
+import { GooglePlus } from '@ionic-native/google-plus/ngx';
+
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { User } from './user';
 
 @Injectable()
 export class AuthService {
@@ -17,6 +20,8 @@ export class AuthService {
   constructor(
     private afAuth: AngularFireAuth,
     private afs: AngularFirestore,
+    private gp: GooglePlus,
+    private platform: Platform,
     private router: Router
   ) {
 
@@ -44,9 +49,24 @@ export class AuthService {
     });
   }
 
-  googleLogin() {
-    const provider = new auth.GoogleAuthProvider();
-    return this.oAuthLogin(provider);
+  async googleLogin() {
+    if (this.platform.is('android')) {
+      try {
+        const gplusUser = await this.gp.login({
+          'webClientId': '287945334174-6ob999bpcpp8c55vpbh1fglurn8q2b1f.apps.googleusercontent.com',
+          'offline': true,
+          'scopes': 'profile email'
+        });
+        return await this.afAuth.auth.signInWithCredential(auth.GoogleAuthProvider.credential(gplusUser.idToken)).then((user) => {
+          this.updateUserData(user);
+        });
+      } catch (err) {
+        console.log('Error: ', err);
+      }
+    } else {
+      const provider = new auth.GoogleAuthProvider();
+      return this.oAuthLogin(provider);
+    }
   }
 
   private oAuthLogin(provider) {
@@ -69,7 +89,7 @@ export class AuthService {
       photoURL: user.photoURL
     };
 
-    return userRef.set(data, {merge: true});
+    return userRef.set(data, { merge: true });
 
   }
 

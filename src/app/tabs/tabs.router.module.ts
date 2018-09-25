@@ -9,13 +9,18 @@ import { PlansPage } from '../plans/plans.page';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/tabs',
+    pathMatch: 'full'
+  },
+  {
     path: 'tabs',
     component: TabsPage,
     children: [
       {
-        path: '',
-        redirectTo: '/tabs/(home:home)',
-        pathMatch: 'full',
+        path: 'tabs',
+        redirectTo: 'home',
+        pathMatch: 'full'
       },
       {
         path: 'home',
@@ -38,11 +43,6 @@ const routes: Routes = [
         component: PlansPage
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/(home:home)',
-    pathMatch: 'full'
   }
 ];
 
@@ -50,4 +50,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
