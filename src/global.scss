@@ -9,4 +9,70 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import url('https://fonts.googleapis.com/css?family=Dosis');
+
+html.md {
+--ion-default-font: 'Dosis', sans-serif;
+letter-spacing: 0.5px;
+}
+
+.toolbar-container.sc-ion-toolbar-md {
+background-color: #3093B1;
+}
+
+.toolbar-title.sc-ion-title {
+display: flex;
+color: #FFF;
+font-size: 1.6em;
+font-family: 'Dosis', sans-serif;
+justify-content: center;
+}
+
+.background {
+width:100%;
+background-image: url('assets/backgrounds/business3.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+width: 100%;
+height: 100%;
+z-index: -10;
+}
+//overlay
+.background::after {
+background-color: #FFF;
+content: "";
+display: block;
+position: absolute;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 100%;
+z-index: -1;
+opacity: .7;
+}
+
+#headline {
+font-size: 1.7em;
+text-align: center;
+color: black;
+margin: 0.2em;
+text-shadow: 1px 2px 4px #fff;
+}
+
+#content {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  align-items: stretch;
+}
+
+.transactionList {
+margin-top: 2.4em;
+}
+
+.input-wrapper.sc-ion-item-md {
+border-top: solid 1px #bcb0b0;
+}
+
+
 
