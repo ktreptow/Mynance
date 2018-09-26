@@ -1,9 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>account</ion-title>
+    <ion-title>$accountname</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-card>
+        <p>100$</p>
+      </ion-card>  
+      <ion-card>
+          <p>"Beschreibung"</p>
+        </ion-card>
 
+    <ion-card href="../transaction">
+      <ion-card-content>
+        <ion-card-title color="primary">Bezeichnung</ion-card-title>
+        <p class="betrag">+1.000.000</p>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button><ion-icon name="add"></ion-icon></ion-fab-button>
+  
+        <ion-fab-list side="top">
+          <ion-fab-button  style="color:green" href="../addTransaction">
+            <ion-icon name="add"></ion-icon>
+          </ion-fab-button>
+          <ion-fab-button  style="color:red" href="../addMinusTransaction">
+            <ion-icon name="remove"></ion-icon>
+          </ion-fab-button>
+        </ion-fab-list>
+  
+      </ion-fab>
+      
 </ion-content>
