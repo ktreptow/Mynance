@@ -35,6 +35,14 @@
       </ion-select>
     </ion-item>
 
+    <ion-item>
+      <ion-label>Konto</ion-label>
+      <ion-select done-text="Weiter" cancel-text="Abbrechen">
+        <ion-select-option value="Geldbörse">Essen</ion-select-option>
+        <ion-select-option value="Girokonto">Trinken</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
       <ion-fab-button color="secondary" href="/tabs/(transactions:transactions)">
         <ion-icon name="checkmark"></ion-icon>
@@ -46,5 +54,4 @@
         <ion-icon name="close"></ion-icon>
       </ion-fab-button>
     </ion-fab>
-  </ion-list>
 </ion-content>

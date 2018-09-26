@@ -1,9 +1,68 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>add_category</ion-title>
+    <ion-title>Kategorie hinzufügen</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-list>
+        <ion-item>
+          <ion-label color="primary" position="floating">Bezeichnung</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
 
+        <ion-item>
+            <ion-label>Icon auswählen</ion-label>
+            <ion-select ok-text="Weiter" cancel-text="Abbrechen">
+              <ion-select-option value="wine"><ion-icon>wine</ion-icon></ion-select-option>
+              <ion-select-option value="walk"><ion-icon>walk</ion-icon></ion-select-option>
+              <ion-select-option value="train"><ion-icon>train</ion-icon></ion-select-option>
+              <ion-select-option value="football"><ion-icon>football</ion-icon></ion-select-option>
+              <ion-select-option value="start"><ion-icon>star</ion-icon></ion-select-option>
+              <ion-select-option value="shirt"><ion-icon>shirt</ion-icon></ion-select-option>
+              <ion-select-option value="school"><ion-icon>school</ion-icon></ion-select-option>
+              <ion-select-option value="restaurant"><ion-icon>restaurant</ion-icon></ion-select-option>
+              <ion-select-option value="pizza"><ion-icon>pizza</ion-icon></ion-select-option>
+              <ion-select-option value="plane"><ion-icon>plane</ion-icon></ion-select-option>
+              <ion-select-option value="planet"><ion-icon>planet</ion-icon></ion-select-option>
+              <ion-select-option value="person"><ion-icon>person</ion-icon></ion-select-option>
+              <ion-select-option value="paw"><ion-icon>paw</ion-icon></ion-select-option>
+              <ion-select-option value="medkit"><ion-icon>medkit</ion-icon></ion-select-option>
+              <ion-select-option value="laptop"><ion-icon>laptop</ion-icon></ion-select-option>
+              <ion-select-option value="home"><ion-icon>home</ion-icon></ion-select-option>
+              <ion-select-option value="hammer"><ion-icon>hammer</ion-icon></ion-select-option>
+              <ion-select-option value="game-controller-a"><ion-icon>game-controller-a</ion-icon></ion-select-option>
+              <ion-select-option value="cart"><ion-icon>cart</ion-icon></ion-select-option>
+              <ion-select-option value="car"><ion-icon>car</ion-icon></ion-select-option>
+              <ion-select-option value="cafe"><ion-icon>cafe</ion-icon></ion-select-option>
+              <ion-select-option value="basket"><ion-icon>basket</ion-icon></ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Farbe auswählen</ion-label>
+            <ion-select ok-text="Weiter" cancel-text="Abbrechen">
+              <ion-select-option value="blau"><ion-icon>Blau</ion-icon></ion-select-option>
+              <ion-select-option value="grün"><ion-icon>Grün</ion-icon></ion-select-option>
+              <ion-select-option value="gelb"><ion-icon>Gelb</ion-icon></ion-select-option>
+              <ion-select-option value="rot"><ion-icon>Rot</ion-icon></ion-select-option>
+              <ion-select-option value="lila"><ion-icon>Lila</ion-icon></ion-select-option>
+              <ion-select-option value="orange"><ion-icon>Orange</ion-icon></ion-select-option>
+              <ion-select-option value="türkis"><ion-icon>Türkis</ion-icon></ion-select-option>
+            </ion-select>
+          </ion-item>
+      </ion-list>
+
+
+      <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+          <ion-fab-button color="secondary" href="/tabs/(home:home)">
+            <ion-icon name="checkmark"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+    
+        <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+          <ion-fab-button color="secondary" href="/tabs/(home:home)">
+            <ion-icon name="close"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+      
 </ion-content>

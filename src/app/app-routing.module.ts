@@ -13,7 +13,9 @@ const routes: Routes = [
   { path: 'addCategory', loadChildren: './add-category/add-category.module#AddCategoryPageModule' },
   { path: 'plansAdd', loadChildren: './plans-add/plans-add.module#PlansAddPageModule' },
   { path: 'home', loadChildren: './home/home.module#HomePageModule' },
-  { path: 'addMinusTransactions', loadChildren: './add-minus-transactions/add-minus-transactions.module#AddMinusTransactionsPageModule' }
+  { path: 'addMinusTransactions', loadChildren: './add-minus-transactions/add-minus-transactions.module#AddMinusTransactionsPageModule' },
+  { path: 'addTransactionFromTransactionspage', loadChildren: './add-transaction-from-transactionspage/add-transaction-from-transactionspage.module#AddTransactionFromTransactionspagePageModule' },
+  { path: 'addMinusTransactionFromTransactionspage', loadChildren: './add-minus-transaction-from-transactionspage/add-minus-transaction-from-transactionspage.module#AddMinusTransactionFromTransactionspagePageModule' }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
