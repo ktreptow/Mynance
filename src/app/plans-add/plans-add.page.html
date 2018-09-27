@@ -12,13 +12,8 @@
     </ion-item>
     <ion-item>
       <ion-label>Zu sparen bis:</ion-label>
-<<<<<<< HEAD
-      <ion-datetime display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter"
-        cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
-=======
-      <ion-datetime #myPicker (ionChange)="updateMyDate(myPicker.value)" min="2018" max="2100" display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY"
-        placeholder="01.01.2019" done-text="Weiter" cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
->>>>>>> alexander
+      <ion-datetime #myPicker (ionChange)="updateMyDate(myPicker.value)" min="2018" max="2100" display-format="DD.MM.YYYY"
+        picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter" cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Intervall:</ion-label>
@@ -29,12 +24,7 @@
         <ion-select-option value="12">Jährlich</ion-select-option>
       </ion-select>
     </ion-item>
-<<<<<<< HEAD
-  </ion-list>
-
-=======
   </form>
->>>>>>> alexander
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-button color="secondary" (click)="presentSavingsPlan()">Hinzufügen</ion-button>
   </ion-fab>
