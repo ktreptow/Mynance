@@ -1,0 +1,78 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>NEUE TRANSAKTION</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" position="floating">Summe</ion-label>
+      <ion-input type="number"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Bezeichnung</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <p color="primary">Datum: Heute</p>
+      <ion-checkbox [(ngModel)]="heute"></ion-checkbox>
+    </ion-item>
+
+    <ion-item *ngIf="!heute && !dauerauftrag">
+      <ion-datetime display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="Datum auswählen ..."
+        done-text="Weiter" cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Kategorie</ion-label>
+      <ion-select done-text="Weiter" cancel-text="Abbrechen">
+        <ion-select-option value="essen">Konto1</ion-select-option>
+        <ion-select-option value="trinken">Konto2</ion-select-option>
+        <!-- <ion-select-option value="neueKategorie" href="../addCategory">
+          <ion-item><button ion-button href="../addCategory">Neue Kategorie erstellen ...</button></ion-item>
+        </ion-select-option> -->
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <p color="primary">Dauerauftrag</p>
+      <ion-checkbox [(ngModel)]="dauerauftrag"></ion-checkbox>
+    </ion-item>
+
+    <ion-list *ngIf="dauerauftrag">
+      <ion-item>
+        <ion-label>Startdatum:</ion-label>
+        <ion-datetime display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter"
+          cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Enddatum:</ion-label>
+        <ion-datetime display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter"
+          cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Intervall:</ion-label>
+        <ion-select value="1" ok-text="Weiter" cancel-text="Abbrechen">
+          <ion-select-option value="1">Monatlich</ion-select-option>
+          <ion-select-option value="3">Vierteljährlich</ion-select-option>
+          <ion-select-option value="6">Halbjährlich</ion-select-option>
+          <ion-select-option value="12">Jährlich</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+      <ion-fab-button color="secondary" href="/tabs/(transactions:transactions)">
+        <ion-icon name="checkmark"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+      <ion-fab-button color="secondary" href="/tabs/(transactions:transactions)">
+        <ion-icon name="close"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-list>
+</ion-content>
