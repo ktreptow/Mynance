@@ -1,20 +1,20 @@
-import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection} from 'angularfire2/firestore';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 
-import {User} from './user';
-import {Account} from './account';
-import {RepeatingTransaction} from './repeating-transaction';
-import {Transaction} from './transaction';
-import {SavingsPlan} from './savings-plan';
+import { User } from './user';
+import { Account } from './account';
+import { RepeatingTransaction } from './repeating-transaction';
+import { Transaction } from './transaction';
+import { SavingsPlan } from './savings-plan';
 
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
-import {RRule, RRuleSet, rrulestr} from 'rrule';
+import { RRule } from 'rrule';
 
 @Injectable()
 export class PersistenceService {
 
-  constructor(private afs: AngularFirestore) {}
+  constructor(private afs: AngularFirestore) { }
 
   addAccount(user: User, account: Account) {
     if (!account.uid) {
