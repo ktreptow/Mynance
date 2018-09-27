@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'addMinusTransactions', loadChildren: './add-minus-transactions/add-minus-transactions.module#AddMinusTransactionsPageModule' },
   { path: 'addTransactionFromTransactionspage', loadChildren: './add-transaction-from-transactionspage/add-transaction-from-transactionspage.module#AddTransactionFromTransactionspagePageModule' },
   { path: 'addMinusTransactionFromTransactionspage', loadChildren: './add-minus-transaction-from-transactionspage/add-minus-transaction-from-transactionspage.module#AddMinusTransactionFromTransactionspagePageModule' },
-  { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
+  { path: 'login', loadChildren: './login/login.module#LoginPageModule' },
+  { path: 'calendar', loadChildren: './calendar/calendar.module#CalendarPageModule' }
 
 ];
 @NgModule({

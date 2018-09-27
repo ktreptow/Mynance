@@ -10,6 +10,7 @@ import { HomePageModule } from '../home/home.module';
 import { BalancePageModule } from '../balance/balance.module';
 import { TransactionsPageModule } from '../transactions/transactions.module';
 import { PlansPageModule } from '../plans/plans.module';
+import { CalendarPageModule } from '../calendar/calendar.module';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { PlansPageModule } from '../plans/plans.module';
     HomePageModule,
     BalancePageModule,
     TransactionsPageModule,
-    PlansPageModule
+    PlansPageModule,
+    CalendarPageModule
   ],
   declarations: [TabsPage]
 })

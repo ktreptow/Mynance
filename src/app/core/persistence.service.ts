@@ -95,13 +95,14 @@ export class PersistenceService {
     const now = new Date();
     for (const transactionUid of savingsPlan.transactionUids.reverse()) {
       const transaction = await this.getTransaction(user, account, transactionUid).first().toPromise();
+      await transaction;
       if (transaction.executionDate <= now) {
         break;
       }
       this.deleteTransaction(user, transaction.accountUid, transaction.uid);
     }
 
-    this.afs.collection('users/' + user.uid + '/savingsPlans').doc(savingsPlan.uid).delete();
+    this.afs.doc('users/' + user.uid + '/savingsPlans/' + savingsPlan.uid).delete();
   }
 
   addRepeatingTransaction(user: User, repeatingTransaction: RepeatingTransaction, rrule?: RRule) {

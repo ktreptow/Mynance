@@ -6,6 +6,7 @@ import { HomePage } from '../home/home.page';
 import { BalancePage } from '../balance/balance.page';
 import { TransactionsPage } from '../transactions/transactions.page';
 import { PlansPage } from '../plans/plans.page';
+import { CalendarPage } from '../calendar/calendar.page';
 import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
@@ -44,6 +45,11 @@ const routes: Routes = [
         path: 'plans',
         outlet: 'plans',
         component: PlansPage
+      },
+      {
+        path: 'calendar',
+        outlet: 'calendar',
+        component: CalendarPage
       }
     ]
   }

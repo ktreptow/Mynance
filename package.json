@@ -45,6 +45,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/animations": "^6.1.9",
     "@angular/common": "~6.1.1",
     "@angular/core": "~6.1.1",
     "@angular/forms": "~6.1.1",
@@ -58,6 +59,7 @@
     "@ionic-native/status-bar": "5.0.0-beta.15",
     "@ionic/angular": "4.0.0-beta.11",
     "@ionic/pro": "2.0.3",
+    "angular-calendar": "^0.26.1",
     "angularfire2": "^5.0.0-rc.12",
     "cordova-android": "~7.0.0",
     "cordova-browser": "5.0.4",
@@ -72,6 +74,7 @@
     "cordova-plugin-statusbar": "2.4.2",
     "cordova-plugin-whitelist": "^1.3.3",
     "core-js": "^2.5.3",
+    "date-fns": "^1.29.0",
     "firebase": "^5.4.2",
     "moment": "^2.22.2",
     "promise-polyfill": "^8.1.0",
