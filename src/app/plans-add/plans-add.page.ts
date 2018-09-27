@@ -65,13 +65,13 @@ export class PlansAddPage {
     })
 
     const anzahlSparen = this.rule.all().length;
-
     const monatlSparen = Math.round(gesamtbetrag * 100.0 / anzahlSparen) / 100;
 
+    const accountName: String = (await this.persistenceService.getAccount(this.user, konto.uid).first().toPromise()).name;
+
     const alert = await this.alertCtrl.create({
-      //TODO Ausgabe anpassen
       header: 'Diesen Sparplan hinzufügen?',
-      message: '<p>Gesamtbetrag: ' + gesamtbetrag + '</p><p>Enddatum: ' + this.myDate + '</p><p>Intervall: ' + intervall + '</p><p>Wie oft: ' + anzahlSparen + '</p><p>Betrag pro Intervall: ' + monatlSparen + '</p>',
+      message: '<p>Konto: ' + accountName + '</p><p>Beschreibung: ' + beschreibung + '</p><p>Gesamtbetrag: ' + gesamtbetrag + '</p><p>Enddatum: ' + this.myDate + '</p><p>Intervall: ' + intervall + '</p><p>Wie oft: ' + anzahlSparen + '</p><p>Betrag pro Intervall: ' + monatlSparen + '</p>',
       buttons: [
         {
           text: 'Abbrechen',
