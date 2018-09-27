@@ -5,19 +5,17 @@
 </ion-header>
 
 <ion-content padding>
-    <ion-card>
+  <ion-list *ngFor="let savingPlan of savingPlansList">
+    <ion-item>
+      <ion-card>
         <ion-card-content>
-          <ion-card-title color="primary">200$</ion-card-title>
-          <p>Sparkonto</p>
+          <ion-card-title color="primary">{{savingPlan.purpose}}</ion-card-title>
+          <p>{{savingPlan.kontoName}}</p>
+          <p>{{savingPlan.amount}}</p>
         </ion-card-content>
       </ion-card>
-
-      <ion-card>
-          <ion-card-content>
-            <ion-card-title color="primary">1.000$</ion-card-title>
-            <p>Tagesgeldkonto</p>
-          </ion-card-content>
-        </ion-card>
+    </ion-item>
+  </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="secondary" href="/plansAdd">
