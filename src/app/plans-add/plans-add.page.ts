@@ -50,9 +50,6 @@ export class PlansAddPage {
   myDate: Date;
   rule: RRule;
 
-
-
-
   async presentSavingsPlan() {
     const gesamtbetrag: number = this.inputForm.value['gesamtbetrag'];
     const intervall: number = this.inputForm.value['intervall'];
