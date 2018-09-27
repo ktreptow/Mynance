@@ -6,16 +6,21 @@
 
 <ion-content padding>
 
-  <ion-list *ngFor="let konto of konten">
-    <ion-item>
-      <ion-card href="../account">
-        <ion-card-content>
-          <ion-card-title color="primary">{{konto.balance}}</ion-card-title>
-          <p>{{konto.name}}</p>
-        </ion-card-content>
-      </ion-card>
-    </ion-item>
-  </ion-list>
+  <ng-container *ngIf="konten.length > 0">
+    <ion-list *ngFor="let konto of konten">
+      <ion-item>
+        <ion-card href="../account">
+          <ion-card-content>
+            <ion-card-title color="primary">{{konto.balance}}</ion-card-title>
+            <p>{{konto.name}}</p>
+          </ion-card-content>
+        </ion-card>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+  <ion-text *ngIf="konten.length == 0" style="text-align: center">
+  	<h1>💰💸🤑 Es sind noch keine Konten vorhanden. 🤑💸💰</h1>
+  </ion-text>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button color="secondary" href="../addAccount">
