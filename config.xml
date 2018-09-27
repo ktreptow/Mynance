@@ -90,6 +90,6 @@
         <variable name="WEB_APPLICATION_CLIENT_ID" value="287945334174-6ob999bpcpp8c55vpbh1fglurn8q2b1f.apps.googleusercontent.com" />
     </plugin>
     <engine name="ios" spec="4.5.5" />
-    <engine name="android" spec="~7.0.0" />
+    <engine name="android" spec="7.0.0" />
     <engine name="browser" spec="5.0.4" />
 </widget>
