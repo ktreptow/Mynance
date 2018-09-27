@@ -6,16 +6,24 @@ import { HomePage } from '../home/home.page';
 import { BalancePage } from '../balance/balance.page';
 import { TransactionsPage } from '../transactions/transactions.page';
 import { PlansPage } from '../plans/plans.page';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/tabs',
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
+  },
+  {
     path: 'tabs',
     component: TabsPage,
+    canActivate: [AuthGuard],
     children: [
       {
-        path: '',
+        path: 'tabs',
         redirectTo: '/tabs/(home:home)',
-        pathMatch: 'full',
+        pathMatch: 'full'
       },
       {
         path: 'home',
@@ -38,11 +46,6 @@ const routes: Routes = [
         component: PlansPage
       }
     ]
-  },
-  {
-    path: '',
-    redirectTo: '/tabs/(home:home)',
-    pathMatch: 'full'
   }
 ];
 
@@ -50,4 +53,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule { }
