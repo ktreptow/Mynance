@@ -61,7 +61,8 @@ export class LoginPage {
     if (email !== '' && password !== '') {
       this.authService.emailSignup(email, password).then(() => this.ngZone.run(() => {
         this.outputMessage = 'Registered with email ' + email;
-        this.router.navigate(['/tabs/(home:home)']);
+
+        this.router.navigate(['']);
       })).catch((error: firebase.FirebaseError) => this.ngZone.run(() => {
         if (error.code === 'auth/email-already-in-use') {
           this.outputMessage = 'An account with this email address already exists.';

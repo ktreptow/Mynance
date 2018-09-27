@@ -4,26 +4,29 @@ import { User } from '../core/user';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
 
-@Component({
-  selector: 'app-balance',
-  templateUrl: './balance.page.html',
-  styleUrls: ['./balance.page.scss'],
-})
-export class BalancePage implements OnInit {
 
-  konten: Account[] = [];
+@Component({
+  selector: 'app-add-account',
+  templateUrl: './add-account.page.html',
+  styleUrls: ['./add-account.page.scss'],
+})
+export class AddAccountPage implements OnInit {
+
   user: User;
+  account: Account;
+  balance: number;
+  name: string;
 
   constructor(private persistenceService: PersistenceService, private authService: AuthService) {
     authService.user.subscribe((user) => {
       this.user = user;
-      if (user) {
-        persistenceService.getAccounts(user).subscribe((konten) => { this.konten = konten });
-      }
     });
   }
-
   ngOnInit() {
   }
 
+  addAccount() {
+
+    this.persistenceService.addAccount(this.user, { name: this.name, balance: this.balance })
+  }
 }

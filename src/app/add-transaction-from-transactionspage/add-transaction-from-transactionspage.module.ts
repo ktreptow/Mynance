@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { PersistenceService } from '../core/persistence.service';
+
 import { IonicModule } from '@ionic/angular';
-import { PlansAddPage } from './plans-add.page';
+
+import { AddTransactionFromTransactionspagePage } from './add-transaction-from-transactionspage.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PlansAddPage
+    component: AddTransactionFromTransactionspagePage
   }
 ];
 
@@ -17,11 +18,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PlansAddPage],
-  providers: [PersistenceService]
+  declarations: [AddTransactionFromTransactionspagePage]
 })
-export class PlansAddPageModule { }
+export class AddTransactionFromTransactionspagePageModule {}

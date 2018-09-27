@@ -1,15 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { PersistenceService } from '../core/persistence.service';
+import { AuthService } from '../core/auth.service';
+
 import { IonicModule } from '@ionic/angular';
-import { PlansAddPage } from './plans-add.page';
+
+import { AddAccountPage } from './add-account.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PlansAddPage
+    component: AddAccountPage
   }
 ];
 
@@ -17,11 +20,11 @@ const routes: Routes = [
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule,
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PlansAddPage],
-  providers: [PersistenceService]
+  declarations: [AddAccountPage],
+  providers: [PersistenceService, AuthService]
+
 })
-export class PlansAddPageModule { }
+export class AddAccountPageModule { }

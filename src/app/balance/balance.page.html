@@ -1,9 +1,26 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Kontostand</ion-title>
+    <ion-title>KONTEN</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+
+  <ion-list *ngFor="let konto of konten">
+    <ion-item>
+      <ion-card href="../account">
+        <ion-card-content>
+          <ion-card-title color="primary">{{konto.balance}}</ion-card-title>
+          <p>{{konto.name}}</p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="secondary" href="../addAccount">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
