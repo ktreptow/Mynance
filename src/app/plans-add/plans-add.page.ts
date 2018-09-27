@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RRule, RRuleSet, rrulestr } from 'rrule';
-import { Moment } from 'moment';
+import * as moment from 'moment';
 import { PersistenceService } from '../core/persistence.service';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -19,17 +19,17 @@ export class PlansAddPage {
     intervall: new FormControl({ value: '', disabled: false })
   });
 
-  tag;
-  monat;
-  jahr;
-  myDate;
+  tag
+  monat
+  jahr
 
+  myDate: Date;
+  rule: RRule;
 
   constructor(
     private persistenceService: PersistenceService,
     private router: Router,
     private alertCtrl: AlertController,
-    private moment: Moment
   ) { }
 
 
@@ -37,9 +37,23 @@ export class PlansAddPage {
     const gesamtbetrag = this.inputForm.value['gesamtbetrag'];
     const intervall = this.inputForm.value['intervall'];
 
+    console.log(moment().toISOString());
+    console.log(this.myDate.toISOString());
+
+    this.rule = new RRule({
+      freq: RRule.MONTHLY,
+      interval: +intervall,
+      count: 0,
+      until: new Date(Date.UTC(this.jahr, (this.monat - 1), this.tag, 12, 0, 0))
+    })
+
+    const anzahlSparen = this.rule.all().length;
+
+    const monatlSparen = Math.round(gesamtbetrag * 100.0 / anzahlSparen) / 100;
+
     const alert = await this.alertCtrl.create({
       header: 'Diesen Sparplan hinzufügen?',
-      message: 'Gesamtbetrag: ' + gesamtbetrag + '\nEnddatum: ' + this.tag + this.monat + this.jahr + '\nIntervall: ' + intervall,
+      message: '<p>Gesamtbetrag: ' + gesamtbetrag + '</p><p>Enddatum: ' + this.myDate + '</p><p>Intervall: ' + intervall + '</p><p>Wie oft: ' + anzahlSparen + '</p><p>Betrag pro Intervall: ' + monatlSparen + '</p>',
       buttons: [
         {
           text: 'Abbrechen',
@@ -58,9 +72,10 @@ export class PlansAddPage {
   }
 
   updateMyDate($event) {
-    this.tag = $event.day.value;
-    this.monat = $event.month.value;
     this.jahr = $event.year.value;
+    this.monat = $event.month.value;
+    this.tag = $event.day.value;
+    this.myDate = moment([$event.year.value, ($event.month.value - 1), $event.day.value]).toDate();
   }
 
   addSavingsPlan() {
