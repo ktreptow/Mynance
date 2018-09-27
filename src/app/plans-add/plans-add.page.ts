@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RRule, RRuleSet, rrulestr } from 'rrule';
+import { RRule } from 'rrule';
 import * as moment from 'moment';
 import { PersistenceService } from '../core/persistence.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -10,7 +10,6 @@ import { AlertController } from '@ionic/angular';
   selector: 'app-plans-add',
   templateUrl: './plans-add.page.html',
   styleUrls: ['./plans-add.page.scss'],
-  providers: [PersistenceService]
 })
 export class PlansAddPage {
 
