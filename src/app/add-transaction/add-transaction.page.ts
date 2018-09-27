@@ -10,6 +10,7 @@ export class AddTransactionPage implements OnInit {
   constructor() { }
 
   heute: boolean = true;
+  dauerauftrag: boolean = false;
 
   ngOnInit() {
   }

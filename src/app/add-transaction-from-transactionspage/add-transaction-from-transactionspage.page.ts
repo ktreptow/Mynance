@@ -9,6 +9,9 @@ export class AddTransactionFromTransactionspagePage implements OnInit {
 
   constructor() { }
 
+  heute: boolean = true;
+  dauerauftrag: boolean = false;
+
   ngOnInit() {
   }
 
