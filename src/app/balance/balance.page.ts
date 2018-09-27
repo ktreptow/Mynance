@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from '../core/account';
+import { User } from '../core/user';
+import { PersistenceService } from '../core/persistence.service';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-balance',
@@ -7,7 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BalancePage implements OnInit {
 
-  constructor() { }
+  konten: Account[] = [];
+  user: User;
+
+  constructor(private persistenceService: PersistenceService, private authService: AuthService) {
+    authService.user.subscribe((user) => {
+      this.user = user;
+      if (user) {
+        persistenceService.getAccounts(user).subscribe((konten) => { this.konten = konten });
+      }
+    });
+  }
 
   ngOnInit() {
   }
