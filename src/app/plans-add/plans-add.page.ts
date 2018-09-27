@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RRule, RRuleSet, rrulestr } from 'rrule';
+
 import * as moment from 'moment';
 import { PersistenceService } from '../core/persistence.service';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -72,6 +73,7 @@ export class PlansAddPage {
   }
 
   updateMyDate($event) {
+
     this.jahr = $event.year.value;
     this.monat = $event.month.value;
     this.tag = $event.day.value;

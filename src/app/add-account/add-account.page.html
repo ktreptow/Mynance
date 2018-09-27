@@ -8,11 +8,11 @@
   <ion-list>
     <ion-item>
       <ion-label color="primary" position="floating">Kontobezeichnung</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary" position="floating">Beschreibung</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-label color="primary" position="floating">Aktueller Kontostand</ion-label>
+      <ion-input type="number" [(ngModel)]="balance"></ion-input>
     </ion-item>
 
     <ion-item>
@@ -25,7 +25,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="secondary" href="/tabs/(balance:balance)">
+    <ion-fab-button color="secondary" (click)="addAccount()">
       <ion-icon name="checkmark"></ion-icon>
     </ion-fab-button>
   </ion-fab>
