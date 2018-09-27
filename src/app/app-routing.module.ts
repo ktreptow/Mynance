@@ -19,6 +19,7 @@ const routes: Routes = [
   { path: 'addTransactionFromTransactionspage', loadChildren: './add-transaction-from-transactionspage/add-transaction-from-transactionspage.module#AddTransactionFromTransactionspagePageModule' },
   { path: 'addMinusTransactionFromTransactionspage', loadChildren: './add-minus-transaction-from-transactionspage/add-minus-transaction-from-transactionspage.module#AddMinusTransactionFromTransactionspagePageModule' },
   { path: 'login', loadChildren: './login/login.module#LoginPageModule' }
+
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
