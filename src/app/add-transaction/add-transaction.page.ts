@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from '../core/account';
+import { User } from '../core/user';
+import { Transaction } from '../core/transaction';
+import { PersistenceService } from '../core/persistence.service';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-add-transaction',
@@ -7,12 +12,53 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTransactionPage implements OnInit {
 
-  constructor() { }
-
   heute: boolean = true;
   dauerauftrag: boolean = false;
+
+  user: User;
+  account: Account;
+
+  purpose?: string;
+  uid?: string;
+  amount: number;
+  creationDate: Date;
+  executionDate: Date;
+  category: string;
+  accountUid: string;
+  execdate: Date;
+
+  today: Date;
+
+  constructor(private persistenceService: PersistenceService, private authService: AuthService) {
+    authService.user.subscribe((user) => {
+      this.user = user;
+    });
+  }
 
   ngOnInit() {
   }
 
+  addTransaction() {
+
+    this.amount = Math.abs(this.amount)
+
+    if (this.heute) {
+      this.executionDate = this.today;
+    } else {
+      this.executionDate = this.execdate;
+    }
+
+
+    if (this.dauerauftrag) {
+      this.persistenceService.addTransaction(this.user,
+        {
+          amount: this.amount, creationDate: this.today,
+          executionDate: this.executionDate, category: this.category, accountUid: this.accountUid
+        })
+    } else {
+      // this.pers
+    }
+  }
+
+  // Neuer Services und Interfaces bla bla bla 
 }

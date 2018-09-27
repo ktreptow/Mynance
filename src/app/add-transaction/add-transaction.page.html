@@ -7,11 +7,11 @@
 <ion-content padding>
   <ion-list>
     <ion-item>
-      <ion-label color="primary" position="floating">Summe</ion-label>
+      <ion-label color="primary" position="floating" [(ngModel)]="amount">Summe</ion-label>
       <ion-input type="number"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary" position="floating">Bezeichnung</ion-label>
+      <ion-label color="primary" position="floating" [(ngModel)]="purpose">Bezeichnung</ion-label>
       <ion-input type="text"></ion-input>
     </ion-item>
     <ion-item>
@@ -20,13 +20,13 @@
     </ion-item>
 
     <ion-item *ngIf="!heute && !dauerauftrag">
-      <ion-datetime display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="Datum auswählen ..."
+      <ion-datetime [(ngModel)]="execDate" display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="Datum auswählen ..."
         done-text="Weiter" cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
     </ion-item>
 
     <ion-item>
       <ion-label>Kategorie</ion-label>
-      <ion-select done-text="Weiter" cancel-text="Abbrechen">
+      <ion-select [(ngModel)]="category" done-text="Weiter" cancel-text="Abbrechen">
         <ion-select-option value="essen">Konto1</ion-select-option>
         <ion-select-option value="trinken">Konto2</ion-select-option>
         <!-- <ion-select-option value="neueKategorie" href="../addCategory">

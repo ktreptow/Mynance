@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-
+import { PersistenceService } from '../core/persistence.service';
+import { AuthService } from '../core/auth.service'
 import { IonicModule } from '@ionic/angular';
 
 import { AddMinusTransactionsPage } from './add-minus-transactions.page';
@@ -21,6 +22,8 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [AddMinusTransactionsPage]
+  declarations: [AddMinusTransactionsPage],
+  providers: [PersistenceService, AuthService]
+
 })
-export class AddMinusTransactionsPageModule {}
+export class AddMinusTransactionsPageModule { }
