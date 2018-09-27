@@ -80,7 +80,7 @@ export class PersistenceService {
     this.afs.collection('users/' + user.uid + '/savingsPlans')
       .doc(savingsPlan.uid).set(savingsPlan);
   }
-  
+
   getSavingsPlan(user: User, savingsPlanUid: string): Observable<SavingsPlan> {
     return this.afs.collection('users/' + user.uid + '/savingsPlans').doc<SavingsPlan>(savingsPlanUid).valueChanges();
   }
@@ -101,7 +101,7 @@ export class PersistenceService {
       this.deleteTransaction(user, transaction.accountUid, transaction.uid);
     }
 
-    this.afs.collection('users' + user.uid + '/savingsPlans').doc(savingsPlan.uid).delete();
+    this.afs.collection('users/' + user.uid + '/savingsPlans').doc(savingsPlan.uid).delete();
   }
 
   addRepeatingTransaction(user: User, repeatingTransaction: RepeatingTransaction, rrule?: RRule) {
