@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Account } from '../core/account';
+import { User } from '../core/user';
+import { PersistenceService } from '../core/persistence.service';
+import { AuthService } from '../core/auth.service';
+
 
 @Component({
   selector: 'app-add-account',
@@ -7,9 +12,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddAccountPage implements OnInit {
 
-  constructor() { }
+  user: User;
+  account: Account;
+  balance: number;
+  name: string;
 
+  constructor(private persistenceService: PersistenceService, private authService: AuthService) {
+    authService.user.subscribe((user) => {
+      this.user = user;
+    });
+  }
   ngOnInit() {
   }
 
+  addAccount() {
+
+    this.persistenceService.addAccount(this.user, { name: this.name, balance: this.balance })
+  }
 }

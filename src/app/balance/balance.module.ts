@@ -7,7 +7,6 @@ import { BalancePage } from './balance.page';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
 
-
 const routes: Routes = [
   {
     path: '',
