@@ -93,8 +93,8 @@ export class PersistenceService {
     const savingsPlan = await this.getSavingsPlan(user, savingsPlanUid).first().toPromise();
     const account = await this.getAccount(user, savingsPlan.accountUid).first().toPromise();
     const now = new Date();
-    for (const transactionUid of savingsPlan.transactionUids.reverse()) {
-      const transaction = await this.getTransaction(user, account, transactionUid).first().toPromise();
+    for (let transactionUid of savingsPlan.transactionUids.reverse()) {
+      let transaction = await this.getTransaction(user, account, transactionUid).first().toPromise();
       if (transaction.executionDate <= now) {
         break;
       }
