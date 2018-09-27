@@ -5,62 +5,66 @@
 </ion-header>
 
 <ion-content padding>
-<div id="content">
-<div class="fadeInDown" id="headline">
-Willkommen bei MYNANC€!
-</div>
-</div>
-
-<ion-list class="transactionList">
-<ion-list-header>Letzte Transaktionen:</ion-list-header>
-  <ion-item>
-    <ion-label>
-      Spiele
-    </ion-label>
-    <div item-content>
-      <p style="color:red">- 250€ </p>
+  <div id="content">
+    <div class="fadeInDown" id="headline">
+      Willkommen bei MYNANC€!
     </div>
-  </ion-item>
+  </div>
 
-  <ion-item>
-    <ion-label>
-      Ersparnisse
-    </ion-label>
-    <div item-content>
-      <p style="color:green">+ 150€ </p>
-    </div>
-  </ion-item>
+  <ion-list class="transactionList">
+    <ion-list-header>Letzte Transaktionen:</ion-list-header>
+    <ion-item>
+      <ion-label>
+        Spiele
+      </ion-label>
+      <div item-content>
+        <p style="color:red">- 250€ </p>
+      </div>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>
-      Essen
-    </ion-label>
-    <div item-content>
-      <p style="color:red">- 20€ </p>
-    </div>
-  </ion-item>
-</ion-list>
+    <ion-item>
+      <ion-label>
+        Ersparnisse
+      </ion-label>
+      <div item-content>
+        <p style="color:green">+ 150€ </p>
+      </div>
+    </ion-item>
 
-<ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button color="secondary"><ion-icon name="add"></ion-icon></ion-fab-button>
+    <ion-item>
+      <ion-label>
+        Essen
+      </ion-label>
+      <div item-content>
+        <p style="color:red">- 20€ </p>
+      </div>
+    </ion-item>
+  </ion-list>
 
-  <ion-fab-list side="top">
-    <ion-fab-button  style="color:green" href="../addTransactionFromTransactionspage">
+  <ion-fab vertical="bottom" horizontal="end">
+    <ion-fab-button color="secondary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
-    <ion-fab-button  style="color:red" href="../addMinusTransaction">
-      <ion-icon name="remove"></ion-icon>
-    </ion-fab-button>    
-    <ion-fab-button href="../addAccount">
-      <ion-icon name="card">Konto hinzufügen</ion-icon>
-    </ion-fab-button>
-    <ion-fab-button href="../addCategory">
-      <ion-icon name="apps">Kategorie hinzufügen</ion-icon>
-    </ion-fab-button>
-  </ion-fab-list>
 
-</ion-fab>
+    <ion-fab-list side="top">
+      <ion-fab-button style="color:green" href="../addTransactionFromTransactionspage">
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button style="color:red" href="../addMinusTransaction">
+        <ion-icon name="remove"></ion-icon>
+      </ion-fab-button>
+
+      <!-- <ion-fab-list side="left"> -->
+      <ion-fab-button href="../addAccount" color="secondary">
+        <ion-icon name="card"></ion-icon>
+        <!-- + Konto -->
+      </ion-fab-button>
+      <ion-fab-button href="../addCategory" color="secondary">
+        <ion-icon name="apps"></ion-icon>
+        <!-- + Kategorie -->
+      </ion-fab-button>
+    </ion-fab-list>
+    <!-- </ion-fab-list> -->
+
+  </ion-fab>
 </ion-content>
-
-
-
