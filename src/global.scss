@@ -30,7 +30,7 @@ justify-content: center;
 
 .background {
 width:100%;
-background-image: url('assets/backgrounds/business3.jpg');
+background-image: url('assets/backgrounds/light-blue.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 width: 100%;
@@ -74,5 +74,9 @@ margin-top: 2.4em;
 border-top: solid 1px #bcb0b0;
 }
 
-
+.betrag {
+  color: grey;
+  text-align: right;
+  font-size: 1.2em
+}
 
