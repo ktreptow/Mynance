@@ -15,3 +15,5 @@ dist/*
 .versions/*
 e2e/*
 www/*
+.gitignore/*
+.project
