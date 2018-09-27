@@ -6,13 +6,18 @@
 
 <ion-content padding>
 
-  <ion-card href="../transaction">
-    <ion-card-content>
-      <ion-card-title color="primary">Bezeichnung</ion-card-title>
-      <p>Konto</p>
-      <p class="betrag">+1.000.000</p>
-    </ion-card-content>
-  </ion-card>
+  <ion-list>
+    <ion-item>
+      <ion-card href="../transaction">
+        <ion-card-content>
+          <ion-card-title color="primary">Bezeichnung
+          </ion-card-title>
+          <p>Konto</p>
+          <h3 class="betrag">1.000.000</h3>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button color="secondary">
@@ -27,6 +32,5 @@
         <ion-icon name="remove"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>
-
   </ion-fab>
 </ion-content>

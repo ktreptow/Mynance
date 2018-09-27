@@ -43,12 +43,12 @@
     <ion-list *ngIf="dauerauftrag">
       <ion-item>
         <ion-label>Startdatum:</ion-label>
-        <ion-datetime display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter"
+        <ion-datetime [(ngModel)]="startDate" display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter"
           cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>Enddatum:</ion-label>
-        <ion-datetime display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter"
+        <ion-datetime [(ngModel)]="endDate" display-format="DD.MM.YYYY" picker-format="DD MMMM YYYY" placeholder="01.01.2019" done-text="Weiter"
           cancel-text="Abbrechen" month-names="Januar, Februar, März, April, Mai, Juni, Juli, August, September, Oktober, November, Dezember"></ion-datetime>
       </ion-item>
       <ion-item>
@@ -64,7 +64,7 @@
 
 
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-      <ion-fab-button color="secondary" href="/tabs/(transactions:transactions)">
+      <ion-fab-button color="secondary" (click)="addTransaction()" href="/tabs/(transactions:transactions)" >
         <ion-icon name="checkmark"></ion-icon>
       </ion-fab-button>
     </ion-fab>

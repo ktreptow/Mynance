@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Account } from '../core/account';
 import { User } from '../core/user';
 import { Transaction } from '../core/transaction';
+import { RepeatingTransaction } from '../core/repeating-transaction';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
 
@@ -26,6 +27,10 @@ export class AddTransactionPage implements OnInit {
   category: string;
   accountUid: string;
   execdate: Date;
+
+  transactionUids?: string[];
+  startDate: Date;
+  endDate: Date;
 
   today: Date;
 
@@ -56,9 +61,9 @@ export class AddTransactionPage implements OnInit {
           executionDate: this.executionDate, category: this.category, accountUid: this.accountUid
         })
     } else {
-      // this.pers
+      this.persistenceService.addRepeatingTransaction(this.user, 
+        {purpose: this.purpose, startDate: this.startDate, endDate: this.endDate, 
+          amount: this.amount, category: this.category, accountUid: this.accountUid })
     }
   }
-
-  // Neuer Services und Interfaces bla bla bla 
 }

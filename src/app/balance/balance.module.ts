@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 import { BalancePage } from './balance.page';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
+import { DataPassing } from '../core/datapassing';
 
 const routes: Routes = [
   {
@@ -22,6 +23,6 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   declarations: [BalancePage],
-  providers: [PersistenceService, AuthService]
+  providers: [PersistenceService, AuthService, DataPassing]
 })
 export class BalancePageModule { }

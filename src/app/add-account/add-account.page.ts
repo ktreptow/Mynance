@@ -26,7 +26,6 @@ export class AddAccountPage implements OnInit {
   }
 
   addAccount() {
-
     this.persistenceService.addAccount(this.user, { name: this.name, balance: this.balance })
   }
 }

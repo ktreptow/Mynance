@@ -6,12 +6,12 @@
 
 <ion-content padding>
 
-  <ion-list *ngFor="let konto of konten">
+  <ion-list *ngFor="let account of accounts">
     <ion-item>
-      <ion-card href="../account">
+      <ion-card (click)="openAccount(account)">
         <ion-card-content>
-          <ion-card-title color="primary">{{konto.balance}} €</ion-card-title>
-          <p>{{konto.name}}</p>
+          <ion-card-title color="primary">{{account.balance}} €</ion-card-title>
+          <p>{{account.name}}</p>
         </ion-card-content>
       </ion-card>
     </ion-item>
