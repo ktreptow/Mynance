@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule, RouteReuseStrategy } from '@angular/router';
+import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
@@ -13,6 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TabsPageModule } from './tabs/tabs.module';
+
+import * as firebase from 'firebase';
 
 //angularfire2 zu @angular/fire ändern
 import { AngularFireModule } from 'angularfire2';
@@ -28,7 +30,7 @@ export const firebaseConfig = {
   projectId: 'mynance-f4f68',
   messagingSenderId: ''
 };
-
+firebase.initializeApp(firebaseConfig);
 @NgModule({
   declarations: [AppComponent],
   imports: [

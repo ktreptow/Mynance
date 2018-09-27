@@ -6,20 +6,23 @@ import { HomePage } from '../home/home.page';
 import { BalancePage } from '../balance/balance.page';
 import { TransactionsPage } from '../transactions/transactions.page';
 import { PlansPage } from '../plans/plans.page';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: '/tabs',
-    pathMatch: 'full'
+    pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
   {
     path: 'tabs',
     component: TabsPage,
+    canActivate: [AuthGuard],
     children: [
       {
         path: 'tabs',
-        redirectTo: 'home',
+        redirectTo: '/tabs/(home:home)',
         pathMatch: 'full'
       },
       {

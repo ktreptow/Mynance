@@ -14,7 +14,6 @@ export class LoginPage {
   outputMessage = '';
   currentUser = '';
   inputForm = new FormGroup({
-    providers: new FormControl({ value: 'google', disabled: false }),
     email: new FormControl({ value: '', disabled: false }),
     password: new FormControl({ value: '', disabled: false })
   });
@@ -34,13 +33,7 @@ export class LoginPage {
       this.outputMessage = 'Already logged in.';
       return;
     }
-    switch (this.inputForm.value['providers']) {
-      case ('google'): this.signInWithGoogle();
-        break;
-      case ('email'): this.signInWithEmail();
-        break;
-      default: break;
-    }
+    this.signInWithEmail();
   }
 
   signInWithEmail() {
@@ -50,7 +43,7 @@ export class LoginPage {
     if (email !== '' && password !== '') {
       this.authService.emailLogin(email, password).then(() => this.ngZone.run(() => {
         this.outputMessage = 'Logged in.';
-        this.router.navigate(['/tabs']);
+        this.router.navigateByUrl('');
       })).catch((error: firebase.FirebaseError) => this.ngZone.run(() => {
         if (error.code === 'auth/wrong-password') {
           this.outputMessage = 'Login failed';
@@ -77,15 +70,6 @@ export class LoginPage {
     } else {
       this.outputMessage = 'Please enter username and password';
     }
-  }
-
-  signInWithGoogle() {
-    this.authService.googleLogin()
-      .then(() => this.ngZone.run(() => {
-        this.outputMessage = 'Logged in.';
-        this.router.navigate(['/tabs']);
-      })
-      );
   }
 
   signOut() {
