@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title id="header">MYNANC€</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="background">
+  <ion-button outline (click)="signOut()">Logout</ion-button>
+  <div id="content">
+    <div class="fadeInDown" id="headline">
+      Willkommen bei MYNANC€! Dein mobiler Planer zum Geld sparen €¥$
+    </div>
+<<<<<<< HEAD
+  </div>
+
+  <ion-list class="transactionList">
+    <ion-list-header>Letzte Transaktionen:</ion-list-header>
+    <ion-item>
+      <ion-label>
+        Spiele
+      </ion-label>
+      <div item-content>
+        <p style="color:red">- 250€ </p>
+      </div>
+    </ion-item>
+=======
+  </ion-item>
+</ion-list>
+</ion-content>
+<ion-content>
+	<ion-list *ngFor="let account of accounts">
+		<ion-text>{{account.name}} : {{account.balance}}</ion-text>
+	</ion-list>
+</ion-content>
+>>>>>>> dominik
+
+    <ion-item>
+      <ion-label>
+        Ersparnisse
+      </ion-label>
+      <div item-content>
+        <p style="color:green">+ 150€ </p>
+      </div>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>
+        Essen
+      </ion-label>
+      <div item-content>
+        <p style="color:red">- 20€ </p>
+      </div>
+    </ion-item>
+  </ion-list>
+</ion-content>
