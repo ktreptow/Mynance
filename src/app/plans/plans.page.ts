@@ -2,10 +2,12 @@ import { Component } from '@angular/core';
 import { SavingsPlan } from '../core/savings-plan';
 import { User } from '../core/user';
 import { PersistenceService } from '../core/persistence.service';
+import { AlertController } from '@ionic/angular';
 import { AuthService } from '../core/auth.service';
 import 'rxjs/add/operator/first';
 
 interface UISavingPlan {
+  uid: string,
   purpose: string;
   amount: number;
   kontoName: String;
@@ -22,7 +24,7 @@ export class PlansPage {
   savingPlansList: UISavingPlan[] = [];
   user: User;
 
-  constructor(private persistenceService: PersistenceService, private authService: AuthService) {
+  constructor(private persistenceService: PersistenceService, private authService: AuthService, private alertCtrl: AlertController) {
     authService.user.subscribe((user) => {
       this.user = user;
       if (user) {
@@ -31,6 +33,7 @@ export class PlansPage {
           for (let savingPlan of savingsPlans) {
             const accountName: String = (await persistenceService.getAccount(this.user, savingPlan.accountUid).first().toPromise()).name;
             const uiSavingPlan: UISavingPlan = {
+              uid: savingPlan.uid,
               purpose: savingPlan.purpose,
               amount: savingPlan.amount,
               kontoName: accountName
@@ -40,6 +43,26 @@ export class PlansPage {
         });
       }
     });
+  }
+
+  async delete(planUid: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Diesen Sparplan wirklich löschen?',
+      buttons: [
+        {
+          text: 'Abbrechen',
+          handler: (cancel) => {
+          }
+        },
+        {
+          text: 'OK',
+          handler: (submit) => {
+            this.persistenceService.deleteSavingsPlan(this.user, planUid);
+          }
+        }]
+    });
+    await alert.present();
+
   }
 
 }
