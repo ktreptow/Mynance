@@ -76,7 +76,6 @@ export class PlansAddPage {
         {
           text: 'Abbrechen',
           handler: (cancel) => {
-            console.log("Abbrechen gedrückt");
           }
         },
         {
@@ -91,7 +90,7 @@ export class PlansAddPage {
             }
 
             this.persistenceService.addSavingsPlan(this.user, savingsPlan, this.rule);
-            console.log("Submit gedrückt");
+            this.router.navigateByUrl("/tabs/(plans:plans)");
           }
         }]
     });
@@ -105,13 +104,4 @@ export class PlansAddPage {
     this.tag = $event.day.value;
     this.myDate = moment([$event.year.value, ($event.month.value - 1), $event.day.value]).toDate();
   }
-
-  addSavingsPlan() {
-
-    this.router.navigate(["/tabs/(plans:plans)"]);
-  }
-
-  ngOnInit() {
-  }
-
 }
