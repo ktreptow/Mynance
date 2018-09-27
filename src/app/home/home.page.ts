@@ -1,7 +1,13 @@
+<<<<<<< HEAD
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../core/auth.service'
 import {PersistenceService} from '../core/persistence.service';
+=======
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '../core/auth.service'
+>>>>>>> master
 
 @Component({
   selector: 'app-home',
@@ -12,6 +18,7 @@ import {PersistenceService} from '../core/persistence.service';
 
 export class HomePage {
 
+<<<<<<< HEAD
   private accounts: Account[] = [];
 
   constructor(
@@ -22,6 +29,12 @@ export class HomePage {
   
 
   }
+=======
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) { }
+>>>>>>> master
 
   signOut() {
     this.authService.signOut();

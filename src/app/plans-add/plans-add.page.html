@@ -7,6 +7,12 @@
 <ion-content padding>
   <form [formGroup]="inputForm">
     <ion-item>
+      <ion-label color="primary" position="floating">Konto</ion-label>
+      <ion-select formControlName="konto" ok-text="Weiter" cancel-text="Abbrechen">
+        <ion-select-option *ngFor="let konto of kontoList" [value]="konto">{{ konto.name }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
       <ion-label color="primary" position="floating">Gesamtsparbetrag</ion-label>
       <ion-input type="number" formControlName="gesamtbetrag"></ion-input>
     </ion-item>
@@ -23,6 +29,10 @@
         <ion-select-option value="6">Halbjährlich</ion-select-option>
         <ion-select-option value="12">Jährlich</ion-select-option>
       </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary" position="floating">Beschreibung:</ion-label>
+      <ion-input type="text" formControlName="beschreibung"></ion-input>
     </ion-item>
   </form>
 

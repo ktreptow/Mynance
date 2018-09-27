@@ -13,7 +13,7 @@ import { NavController } from '@ionic/angular';
 })
 export class BalancePage implements OnInit {
 
-  accounts: Account[] = [];
+  konten: Account[] = [];
   user: User;
   chosenAccount: Account
 
@@ -22,7 +22,7 @@ export class BalancePage implements OnInit {
     authService.user.subscribe((user) => {
       this.user = user;
       if (user) {
-        persistenceService.getAccounts(user).subscribe((accounts) => { this.accounts = accounts });
+        persistenceService.getAccounts(user).subscribe((konten) => { this.konten = konten });
       }
     });
   }

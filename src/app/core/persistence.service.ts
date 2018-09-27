@@ -1,23 +1,26 @@
-import {Injectable} from '@angular/core';
-import {AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection} from 'angularfire2/firestore';
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreCollection } from 'angularfire2/firestore';
 
-import {User} from './user';
-import {Account} from './account';
+import { User } from './user';
+import { Account } from './account';
 import { RepeatingTransaction } from './repeating-transaction';
-import {Transaction} from './transaction';
-import {SavingsPlan} from './savings-plan';
+import { Transaction } from './transaction';
+import { SavingsPlan } from './savings-plan';
 
-import {Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 
-import {RRule, RRuleSet, rrulestr} from 'rrule';
+import { RRule } from 'rrule';
 
 @Injectable()
 export class PersistenceService {
 
-  constructor(private afs: AngularFirestore) {}
+  constructor(private afs: AngularFirestore) { }
 
   addAccount(user: User, account: Account) {
-    this.afs.collection('users/' + user.uid + '/accounts').doc((account.uid ? account.uid : this.afs.createId())).set(account);
+    if (!account.uid) {
+      account.uid = this.afs.createId();
+    }
+    this.afs.collection('users/' + user.uid + '/accounts').doc(account.uid).set(account);
   }
 
   getAccounts(user: User): Observable<Account[]> {
@@ -29,8 +32,11 @@ export class PersistenceService {
   }
 
   addTransaction(user: User, transaction: Transaction) {
+    if (!transaction.uid) {
+      transaction.uid = this.afs.createId();
+    }
     this.afs.collection('users/' + user.uid + '/accounts/' + transaction.accountUid + '/transactions')
-      .doc((transaction.uid ? transaction.uid : this.afs.createId())).set(transaction);
+      .doc(transaction.uid).set(transaction);
   }
 
   getTransactions(user: User, account: Account): Observable<Transaction[]> {
@@ -54,7 +60,7 @@ export class PersistenceService {
         const transaction = {
           uid: this.afs.createId(),
           purpose: savingsPlan.purpose,
-          amount:  Math.round(savingsPlan.amount * 100.0 / rrule.all().length) / 100,
+          amount: Math.round(savingsPlan.amount * 100.0 / rrule.all().length) / 100,
           creationDate: new Date(),
           executionDate: date,
           category: 'SAVING',
@@ -64,8 +70,11 @@ export class PersistenceService {
         savingsPlan.transactionUids.push(transaction.uid);
       });
     }
+    if (!savingsPlan.uid) {
+      savingsPlan.uid = this.afs.createId();
+    }
     this.afs.collection('users/' + user.uid + '/savingsPlans')
-      .doc(savingsPlan.uid ? savingsPlan.uid : this.afs.createId()).set(savingsPlan);
+      .doc(savingsPlan.uid).set(savingsPlan);
   }
 
   getSavingsPlans(user: User): Observable<SavingsPlan[]> {
@@ -89,8 +98,11 @@ export class PersistenceService {
         repeatingTransaction.transactionUids.push(transaction.uid);
       });
     }
+    if (!repeatingTransaction.uid) {
+      repeatingTransaction.uid = this.afs.createId();
+    }
     this.afs.collection('users/' + user.uid + '/accounts/' + repeatingTransaction.accountUid + '/repeatingTransactions')
-      .doc(repeatingTransaction.uid ? repeatingTransaction.uid : this.afs.createId()).set(repeatingTransaction);
+      .doc(repeatingTransaction.uid).set(repeatingTransaction);
   }
 
   getRepeatingTransactions(user: User, account: Account): Observable<RepeatingTransaction[]> {

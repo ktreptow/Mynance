@@ -3,6 +3,7 @@ import { Account } from '../core/account';
 import { User } from '../core/user';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class AddAccountPage implements OnInit {
   balance: number;
   name: string;
 
-  constructor(private persistenceService: PersistenceService, private authService: AuthService) {
+  constructor(private persistenceService: PersistenceService, private router: Router, private authService: AuthService) {
     authService.user.subscribe((user) => {
       this.user = user;
     });
@@ -27,5 +28,6 @@ export class AddAccountPage implements OnInit {
 
   addAccount() {
     this.persistenceService.addAccount(this.user, { name: this.name, balance: this.balance })
+    this.router.navigateByUrl("/tabs/(balance:balance)");
   }
 }
