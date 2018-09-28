@@ -3,6 +3,8 @@ import { Account } from '../core/account';
 import { User } from '../core/user';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
+import { DataPassing } from '../core/datapassing';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-balance',
@@ -13,8 +15,10 @@ export class BalancePage implements OnInit {
 
   konten: Account[] = [];
   user: User;
+  chosenAccount: Account
 
-  constructor(private persistenceService: PersistenceService, private authService: AuthService) {
+  constructor(public datapassing: DataPassing, private persistenceService: PersistenceService, private authService: AuthService, private navCtrl: NavController
+  ) {
     authService.user.subscribe((user) => {
       this.user = user;
       if (user) {
@@ -26,4 +30,8 @@ export class BalancePage implements OnInit {
   ngOnInit() {
   }
 
+  openAccount(konto) {
+    this.datapassing.account = konto
+    this.navCtrl.navigateForward('/account')
+  }
 }
