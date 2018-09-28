@@ -6,18 +6,16 @@
 
 <ion-content padding>
 
-  <ion-list>
+  <ion-list *ngFor="let transaction of transactions">
     <ion-item>
-      <ion-card href="../transaction">
+      <ion-card (click)="openTransaction(transaction)">
         <ion-card-content>
-          <ion-card-title color="primary">Bezeichnung
-          </ion-card-title>
-          <p>Konto</p>
-          <h3 class="betrag">1.000.000</h3>
+          <ion-card-title color="primary">{{transaction.purpose}}</ion-card-title>
+          <p class="betrag">{{transaction.amount}} €</p>
         </ion-card-content>
       </ion-card>
     </ion-item>
-  </ion-list>
+  </ion-list>s
 
   <ion-fab vertical="bottom" horizontal="end">
     <ion-fab-button color="secondary">

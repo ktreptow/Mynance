@@ -8,6 +8,7 @@ import { AuthService } from '../core/auth.service';
 import { DataPassing } from '../core/datapassing';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AccountPage } from '../account/account.page';
 
 
 @Component({
@@ -25,6 +26,7 @@ export class AddTransactionPage implements OnInit {
   user: User;
   account: Account;
   konten: Account[] = [];
+  konto: Account;
 
   purpose?: string;
   uid?: string;
@@ -55,7 +57,7 @@ export class AddTransactionPage implements OnInit {
       this.fromAccount = true;
     } else {
       this.fromAccount = false;
-      this.account = this.selectedAccount
+      // this.account = this.konto;
     }
 
   }
@@ -79,6 +81,9 @@ export class AddTransactionPage implements OnInit {
       this.executionDate = this.execdate;
     }
 
+    if (!this.fromAccount) {
+      this.account = this.konto;
+    }
 
     if (!this.dauerauftrag) {
       this.persistenceService.addTransaction(this.user,
@@ -93,7 +98,6 @@ export class AddTransactionPage implements OnInit {
           amount: this.amount, category: this.category, accountUid: this.account.uid
         })
     }
-    this.router.navigateByUrl('/balance');
-
+    this.router.navigateByUrl('/tabs/(transactions:transactions)');
   }
 }
