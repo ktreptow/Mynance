@@ -30,7 +30,7 @@ export class AddAccountPage implements OnInit {
       Danach wird der Benutzer zurück auf die Kontoübersicht geleitet.
   */
   addAccount() {
-    this.persistenceService.addAccount(this.user, { name: this.name, balance: this.balance })
+    this.persistenceService.setAccount(this.user, { name: this.name, balance: this.balance })
     this.router.navigateByUrl("/tabs/(balance:balance)");
   }
 }
