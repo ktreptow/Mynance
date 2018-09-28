@@ -65,18 +65,17 @@ export class PlansAddPage {
     })
 
     const anzahlSparen = this.rule.all().length;
-
     const monatlSparen = Math.round(gesamtbetrag * 100.0 / anzahlSparen) / 100;
 
+    const accountName: String = (await this.persistenceService.getAccount(this.user, konto.uid).first().toPromise()).name;
+
     const alert = await this.alertCtrl.create({
-      //TODO Ausgabe anpassen
       header: 'Diesen Sparplan hinzufügen?',
-      message: '<p>Gesamtbetrag: ' + gesamtbetrag + '</p><p>Enddatum: ' + this.myDate + '</p><p>Intervall: ' + intervall + '</p><p>Wie oft: ' + anzahlSparen + '</p><p>Betrag pro Intervall: ' + monatlSparen + '</p>',
+      message: '<p>Konto: ' + accountName + '</p><p>Beschreibung: ' + beschreibung + '</p><p>Gesamtbetrag: ' + gesamtbetrag + '</p><p>Enddatum: ' + this.myDate + '</p><p>Intervall: ' + intervall + '</p><p>Wie oft: ' + anzahlSparen + '</p><p>Betrag pro Intervall: ' + monatlSparen + '</p>',
       buttons: [
         {
           text: 'Abbrechen',
           handler: (cancel) => {
-            console.log("Abbrechen gedrückt");
           }
         },
         {
@@ -91,7 +90,7 @@ export class PlansAddPage {
             }
 
             this.persistenceService.addSavingsPlan(this.user, savingsPlan, this.rule);
-            console.log("Submit gedrückt");
+            this.router.navigateByUrl("/tabs/(plans:plans)");
           }
         }]
     });
@@ -105,13 +104,4 @@ export class PlansAddPage {
     this.tag = $event.day.value;
     this.myDate = moment([$event.year.value, ($event.month.value - 1), $event.day.value]).toDate();
   }
-
-  addSavingsPlan() {
-
-    this.router.navigate(["/tabs/(plans:plans)"]);
-  }
-
-  ngOnInit() {
-  }
-
 }

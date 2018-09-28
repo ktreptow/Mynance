@@ -39,6 +39,10 @@ export class PersistenceService {
       .doc(transaction.uid).set(transaction);
   }
 
+  deleteTransaction(user: User, accountUid: string, transactionUid: string) {
+    this.afs.collection('users/' + user.uid + '/accounts/' + accountUid + '/transactions').doc(transactionUid).delete();
+  }
+
   getTransactions(user: User, account: Account): Observable<Transaction[]> {
     return this.afs.collection<Transaction>('users/' + user.uid + '/accounts/' + account.uid + '/transactions').valueChanges();
   }
@@ -77,8 +81,27 @@ export class PersistenceService {
       .doc(savingsPlan.uid).set(savingsPlan);
   }
 
+  getSavingsPlan(user: User, savingsPlanUid: string): Observable<SavingsPlan> {
+    return this.afs.collection('users/' + user.uid + '/savingsPlans').doc<SavingsPlan>(savingsPlanUid).valueChanges();
+  }
+
   getSavingsPlans(user: User): Observable<SavingsPlan[]> {
     return this.afs.collection<SavingsPlan>('users/' + user.uid + '/savingsPlans').valueChanges();
+  }
+
+  async deleteSavingsPlan(user: User, savingsPlanUid: string) {
+    const savingsPlan = await this.getSavingsPlan(user, savingsPlanUid).first().toPromise();
+    const account = await this.getAccount(user, savingsPlan.accountUid).first().toPromise();
+    const now = new Date();
+    for (const transactionUid of savingsPlan.transactionUids.reverse()) {
+      const transaction = await this.getTransaction(user, account, transactionUid).first().toPromise();
+      if (transaction.executionDate <= now) {
+        break;
+      }
+      this.deleteTransaction(user, transaction.accountUid, transaction.uid);
+    }
+
+    this.afs.collection('users/' + user.uid + '/savingsPlans').doc(savingsPlan.uid).delete();
   }
 
   addRepeatingTransaction(user: User, repeatingTransaction: RepeatingTransaction, rrule?: RRule) {
