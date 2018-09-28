@@ -92,7 +92,7 @@ export class PlansAddPage {
               startDate: startDatum,
             }
 
-            this.persistenceService.addSavingsPlan(this.user, savingsPlan, this.rule);
+            this.persistenceService.setSavingsPlan(this.user, savingsPlan, this.rule);
             this.router.navigateByUrl("/tabs/(plans:plans)");
           }
         }]
