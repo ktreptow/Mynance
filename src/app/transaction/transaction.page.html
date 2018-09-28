@@ -8,17 +8,29 @@
 
 <ion-content padding>
   <ion-list>
-    </ion-item>
-    <h3>Bezeichnung</h3>
-    <ion-label>Transaktionsname</ion-label>
-    <h3>Betrag</h3>
-    <ion-label>+ 50</ion-label>
-    <h3>Erstellungsdatum</h3>
-    <ion-label>21.09.2018</ion-label>
-    <h3>Buchungsdatum</h3>
-    <ion-label>22.09.2018</ion-label>
-    <h3>Kategorie</h3>
-    <ion-label>Essen</ion-label>
     <ion-item>
+      <ion-label color="primary">Bezeichnung</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{transaction.purpose}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Betrag</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{transaction.amount}}</ion-label>
+    </ion-item>
+    <!-- <ion-item>
+      <ion-label color="primary">Erstellungsdatum</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{transaction.creationDate}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Buchungsdatum</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>{{transaction.executionDate}}</ion-label>
+    </ion-item> -->
   </ion-list>
 </ion-content>
