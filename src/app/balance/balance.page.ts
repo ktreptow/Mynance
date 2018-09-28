@@ -17,7 +17,7 @@ export class BalancePage implements OnInit {
   user: User;
   chosenAccount: Account
 
-  constructor(public datapassing: DataPassing, private persistenceService: PersistenceService, private authService: AuthService
+  constructor(public datapassing: DataPassing, private persistenceService: PersistenceService, private authService: AuthService, private navCtrl: NavController
   ) {
     authService.user.subscribe((user) => {
       this.user = user;
@@ -30,10 +30,8 @@ export class BalancePage implements OnInit {
   ngOnInit() {
   }
 
-  openAccount(account) {
-    this.datapassing.account = account
-    console.log("hallo pls")
-    // this.chosenAccount = account;
-    // this.navCtrl.navigateForward('/account', this.chosenAccount)
+  openAccount(konto) {
+    this.datapassing.account = konto
+    this.navCtrl.navigateForward('/account')
   }
 }

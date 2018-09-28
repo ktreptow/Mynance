@@ -16,4 +16,5 @@ export class DataPassing {
     repeatingTransaction: RepeatingTransaction;
     user: User;
     savingsplan: SavingsPlan
+    positive: boolean;
 }

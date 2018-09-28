@@ -25,10 +25,10 @@
     </ion-fab-button>
 
     <ion-fab-list side="top">
-      <ion-fab-button style="color:green" href="../addTransactionFromTransactionspage">
+      <ion-fab-button style="color:green" (click)="addTransaction('+')">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
-      <ion-fab-button style="color:red" href="../addMinusTransactionFromTransactionspage">
+      <ion-fab-button style="color:red" (click)="addTransaction('-')">
         <ion-icon name="remove"></ion-icon>
       </ion-fab-button>
     </ion-fab-list>

@@ -5,6 +5,10 @@ import { Transaction } from '../core/transaction';
 import { RepeatingTransaction } from '../core/repeating-transaction';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
+import { DataPassing } from '../core/datapassing';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-transaction',
@@ -13,11 +17,14 @@ import { AuthService } from '../core/auth.service';
 })
 export class AddTransactionPage implements OnInit {
 
+  positive: boolean;
   heute: boolean = true;
   dauerauftrag: boolean = false;
+  fromAccount: boolean = false;
 
   user: User;
   account: Account;
+  konten: Account[] = [];
 
   purpose?: string;
   uid?: string;
@@ -32,12 +39,25 @@ export class AddTransactionPage implements OnInit {
   startDate: Date;
   endDate: Date;
 
-  today: Date;
+  today: Date = new Date();
+  selectedAccount: Account;
 
-  constructor(private persistenceService: PersistenceService, private authService: AuthService) {
+  constructor(private router: Router, private persistenceService: PersistenceService, private authService: AuthService, public datapassing: DataPassing, private navCtrl: NavController) {
     authService.user.subscribe((user) => {
       this.user = user;
+      if (this.user) {
+        persistenceService.getAccounts(this.user).subscribe((konten) => { this.konten = konten });
+      }
     });
+    this.positive = this.datapassing.positive
+    if (this.datapassing.account) {
+      this.account = this.datapassing.account
+      this.fromAccount = true;
+    } else {
+      this.fromAccount = false;
+      this.account = this.selectedAccount
+    }
+
   }
 
   ngOnInit() {
@@ -45,7 +65,13 @@ export class AddTransactionPage implements OnInit {
 
   addTransaction() {
 
-    this.amount = Math.abs(this.amount)
+    this.category = 'TestKategorie'
+    if (this.positive) {
+      this.amount = Math.abs(this.amount)
+    } else {
+      this.amount = -Math.abs(this.amount)
+    }
+
 
     if (this.heute) {
       this.executionDate = this.today;
@@ -54,16 +80,20 @@ export class AddTransactionPage implements OnInit {
     }
 
 
-    if (this.dauerauftrag) {
+    if (!this.dauerauftrag) {
       this.persistenceService.addTransaction(this.user,
         {
           amount: this.amount, creationDate: this.today,
-          executionDate: this.executionDate, category: this.category, accountUid: this.accountUid
+          executionDate: this.executionDate, category: this.category, accountUid: this.account.uid
         })
     } else {
-      this.persistenceService.addRepeatingTransaction(this.user, 
-        {purpose: this.purpose, startDate: this.startDate, endDate: this.endDate, 
-          amount: this.amount, category: this.category, accountUid: this.accountUid })
+      this.persistenceService.addRepeatingTransaction(this.user,
+        {
+          purpose: this.purpose, startDate: this.startDate, endDate: this.endDate,
+          amount: this.amount, category: this.category, accountUid: this.account.uid
+        })
     }
+    this.router.navigateByUrl('/balance');
+
   }
 }

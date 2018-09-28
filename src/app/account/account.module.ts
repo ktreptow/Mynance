@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
 import { IonicModule } from '@ionic/angular';
+import { DataPassing } from '../core/datapassing';
 
 import { AccountPage } from './account.page';
 

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { DataPassing } from '../core/datapassing';
+import { Transaction } from '../core/transaction';
 
 @Component({
   selector: 'app-transaction',
@@ -7,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionPage implements OnInit {
 
-  constructor() { }
+  transaction: Transaction;
+
+  constructor(public datapassing: DataPassing) {
+    this.transaction = this.datapassing.transaction
+  }
 
   ngOnInit() {
   }
