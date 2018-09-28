@@ -9,7 +9,9 @@ import { DataPassing } from '../core/datapassing';
 import { NavController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-
+/** Komponente zum Hinzufügen von Transaktionen. Erreichbar über die '+' und '-' Buttons über den HOME-Tab
+   sowie über eine Kontodetailansicht.
+*/
 @Component({
   selector: 'app-add-transaction',
   templateUrl: './add-transaction.page.html',
@@ -42,6 +44,17 @@ export class AddTransactionPage implements OnInit {
   today: Date = new Date();
   selectedAccount: Account;
 
+  /** Konstruktor der Klasse. Hier wird der aktuelle User ermittelt und seine Konten geladen
+     Es geschieht eine Abfrage, ob die Seite von einem Konto oder von der HOME Seite aufgerufen wird.
+     Im ersten Fall ist das Konto bereits bekannt und wird über den selbst geschriebenen Provider 
+     datapassing von der Kontoseite mitgegeben.  
+
+     @param router: Router zum Navigieren auf die nächste Seite
+     @param persistenceService: Service zum Aufrufen der Datenbankservices
+     @param authService: Service zur Nutzererkennung
+     @param datapassing: Provider zur Weitergabe von Daten zwischen den Seiten
+     @package navCtrl: Navigationscontroller zur Kontrolle der Navigation
+  */
   constructor(private router: Router, private persistenceService: PersistenceService, private authService: AuthService, public datapassing: DataPassing, private navCtrl: NavController) {
     authService.user.subscribe((user) => {
       this.user = user;
@@ -63,8 +76,13 @@ export class AddTransactionPage implements OnInit {
   ngOnInit() {
   }
 
-  addTransaction() {
+  /** Diese Methode wird über (click) im HTML aufgerufen und ruft einen Service auf, 
+   der eine Transaktion mit den eingegebenen Parametern in der Datenbank anlegt.
 
+   Vorher wird abgefragt, wann das Ausführungsdatum ist (heute oder terminiert) und ob es 
+   sich um einen Dauerauftrag handelt. Diese Werte kommen per Binding aus dem HTML.
+*/
+  addTransaction() {
     this.category = 'TestKategorie'
     if (this.positive) {
       this.amount = Math.abs(this.amount)
@@ -72,13 +90,11 @@ export class AddTransactionPage implements OnInit {
       this.amount = -Math.abs(this.amount)
     }
 
-
     if (this.heute) {
       this.executionDate = this.today;
     } else {
       this.executionDate = this.execdate;
     }
-
 
     if (!this.dauerauftrag) {
       this.persistenceService.setTransaction(this.user,

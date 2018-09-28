@@ -5,7 +5,7 @@ import { PersistenceService } from '../core/persistence.service';
 import { AuthService } from '../core/auth.service';
 import { Router } from '@angular/router';
 
-
+/** Komponente zum Hinzufügen eines neuen Kontos. */
 @Component({
   selector: 'app-add-account',
   templateUrl: './add-account.page.html',
@@ -26,6 +26,9 @@ export class AddAccountPage implements OnInit {
   ngOnInit() {
   }
 
+  /**  Methode zum Aufruf des Services, der ein Konto mit den mitgegebenen Parametern in der Datenbank erstellt.
+      Danach wird der Benutzer zurück auf die Kontoübersicht geleitet.
+  */
   addAccount() {
     this.persistenceService.setAccount(this.user, { name: this.name, balance: this.balance })
     this.router.navigateByUrl("/tabs/(balance:balance)");

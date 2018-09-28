@@ -6,6 +6,10 @@ import { AuthService } from '../core/auth.service';
 import { DataPassing } from '../core/datapassing';
 import { NavController } from '@ionic/angular';
 
+
+/** Komponente zur Übersicht der vorhandenen Konten. 
+ Es ist möglich, sich ein Konto im Detail anzeigen zu lassen, sowie ein neues Konto zu erstellen.
+*/
 @Component({
   selector: 'app-balance',
   templateUrl: './balance.page.html',
@@ -30,6 +34,12 @@ export class BalancePage implements OnInit {
   ngOnInit() {
   }
 
+  /**  Methode zum Aufrufen der Konto-Detailansicht. Hier wird das gewählte Konto per Provider 
+   zwischengespeichert und danach auf die Account-Detailsansicht geroutet, wo dieses dann wieder
+   abgefragt werden kann.
+
+   @param konto: Konto, das geöffnet werden soll
+  */
   openAccount(konto) {
     this.datapassing.account = konto
     this.navCtrl.navigateForward('/account')

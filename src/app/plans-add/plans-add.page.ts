@@ -26,6 +26,10 @@ export class PlansAddPage {
     private router: Router,
     private alertCtrl: AlertController,
   ) {
+    /**
+     * Hier wird der momentan angemeldete User und darüber alle diesem User
+     * zugehörigen Konten abgerufen und in Variablen gespeichert
+     */
     authService.user.subscribe((user) => {
       this.user = user;
       persistenceService.getAccounts(this.user).subscribe((kontoList) => {
@@ -34,7 +38,7 @@ export class PlansAddPage {
 
     });
   }
-  
+  //Verbindung zwischen Inputfeldern auf der Oberfläche und der Logik
   inputForm = new FormGroup({
     konto: new FormControl({ value: '', disabled: false }),
     gesamtbetrag: new FormControl({ value: '', disabled: false }),
@@ -51,22 +55,27 @@ export class PlansAddPage {
   rule: RRule;
 
   /**
-   * 
+   * Nach der Berechnung der einzelnen Transaktionen werden die Eckdaten
+   * des Sparplans als Alert angezeigt. Dieser kann entweder abgelehnt oder bestätigt werden. 
+   * Bei einer Bestätigung wird der Sparplan über den Persistence-Service in die 
+   * Datenbank geschrieben und die zugehörigen Transaktionen erstellt. 
+   * Anschließend wird man auf die Sparplan-Übersichtsseite weitergeleitet.
    */
   async presentSavingsPlan() {
+    //Speichern der Werte aus den Eingabefeldern der Oberfläche in Variablen
     const gesamtbetrag: number = this.inputForm.value['gesamtbetrag'];
     const intervall: number = this.inputForm.value['intervall'];
     const konto: Account = this.inputForm.value['konto'];
     const beschreibung: string = this.inputForm.value['beschreibung'];
     const startDatum: Date = new Date(Date.UTC(this.jahr, (this.monat - 1), this.tag, 12, 0, 0));
-
+    // Die RRule dient der Berechnung von wiederkehrenden Terminen
     this.rule = new RRule({
       freq: RRule.MONTHLY,
       interval: +intervall,
       count: 0,
       until: startDatum
     })
-
+    //Die Länge des Arrays aller Termine entspricht der Transaktionen, die für den Sparplan nötig sind
     const anzahlSparen = this.rule.all().length;
     const monatlSparen = Math.round(gesamtbetrag * 100.0 / anzahlSparen) / 100;
 
@@ -99,7 +108,10 @@ export class PlansAddPage {
     });
     await alert.present();
   }
-
+  /**
+   * Sobald das Datum in der Oberfläche geändert wird, werden auch die Variablen erneuert
+   * @param $event Das zu verarbeitende Event
+   */
   updateMyDate($event) {
 
     this.jahr = $event.year.value;
