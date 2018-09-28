@@ -25,7 +25,7 @@ export class AuthService {
     private router: Router
   ) {
 
-    //// Get auth data, then get firestore user document || null
+    // Wenn ein Nutzer angemeldet ist, wird user ein Observable dieses Nutzer-Objekts, ansonsten ein Observable von null
     this.user = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
@@ -37,49 +37,36 @@ export class AuthService {
     );
   }
 
+  /**
+   * Mit Email und Passwort registrieren
+   * @param email
+   *    Nutzer-Email
+   * @param password
+   *    Nutzer-Passwort
+   */
   emailSignup(email: string, password: string) {
     return this.afAuth.auth.createUserWithEmailAndPassword(email, password).then((credential) => {
       this.updateUserData(credential.user);
     });
   }
 
+  /**
+   * Login mit Email und Passwort
+   * @param email
+   *    Nutzer-Email
+   * @param password
+   *    Nutzer-Passwort
+   */
   emailLogin(email: string, password: string) {
-    return this.afAuth.auth.signInWithEmailAndPassword(email, password).then((credential) => {
-      this.updateUserData(credential.user);
-    });
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
-
-  async googleLogin() {
-    if (this.platform.is('android')) {
-      try {
-        const gplusUser = await this.gp.login({
-          'webClientId': '287945334174-6ob999bpcpp8c55vpbh1fglurn8q2b1f.apps.googleusercontent.com',
-          'offline': true,
-          'scopes': 'profile email'
-        });
-        return await this.afAuth.auth.signInWithCredential(auth.GoogleAuthProvider.credential(gplusUser.idToken)).then((user) => {
-          this.updateUserData(user);
-        });
-      } catch (err) {
-        console.log('Error: ', err);
-      }
-    } else {
-      const provider = new auth.GoogleAuthProvider();
-      return this.oAuthLogin(provider);
-    }
-  }
-
-  private oAuthLogin(provider) {
-    return this.afAuth.auth.signInWithPopup(provider)
-      .then((credential) => {
-        this.updateUserData(credential.user);
-      });
-  }
-
-
-  private updateUserData(user) {
-    // Sets user data to firestore on login
-
+  
+  /**
+   * Aktualisiert die in Firebase gespeicherten Nutzerdaten
+   * @param user
+   *    Nutzer-Objekt
+   */
+  private updateUserData(user: User) {
     const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
 
     const data: User = {
@@ -94,6 +81,9 @@ export class AuthService {
   }
 
 
+  /**
+   * Momentan angemeldeter Nutzer wird ausgeloggt.
+   */
   signOut() {
     return this.afAuth.auth.signOut().then(() => {
       this.router.navigate(['/']);
