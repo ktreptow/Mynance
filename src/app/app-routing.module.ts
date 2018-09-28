@@ -6,7 +6,6 @@ const routes: Routes = [
   { path: '', redirectTo: '/tabs/(home:home)', pathMatch: 'full' },
   { path: 'tabs', loadChildren: './tabs/tabs.module#TabsPageModule', canActivate: [AuthGuard] },
   { path: 'plans', loadChildren: './plans/plans.module#PlansPageModule' },
-  { path: 'transactions', loadChildren: './transactions/transactions.module#TransactionsPageModule' },
   { path: 'balance', loadChildren: './balance/balance.module#BalancePageModule' },
   { path: 'addAccount', loadChildren: './add-account/add-account.module#AddAccountPageModule' },
   { path: 'account', loadChildren: './account/account.module#AccountPageModule' },

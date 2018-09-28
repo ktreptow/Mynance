@@ -8,7 +8,6 @@ import { TabsPageRoutingModule } from './tabs.router.module';
 import { TabsPage } from './tabs.page';
 import { HomePageModule } from '../home/home.module';
 import { BalancePageModule } from '../balance/balance.module';
-import { TransactionsPageModule } from '../transactions/transactions.module';
 import { PlansPageModule } from '../plans/plans.module';
 
 @NgModule({
@@ -19,7 +18,6 @@ import { PlansPageModule } from '../plans/plans.module';
     TabsPageRoutingModule,
     HomePageModule,
     BalancePageModule,
-    TransactionsPageModule,
     PlansPageModule
   ],
   declarations: [TabsPage]
