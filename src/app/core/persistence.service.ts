@@ -39,7 +39,14 @@ export class PersistenceService {
       .doc(transaction.uid).set(transaction);
   }
 
-  deleteTransaction(user: User, accountUid: string, transactionUid: string) {
+  async deleteTransaction(user: User, accountUid: string, transactionUid: string) {
+    const account = await this.getAccount(user, accountUid).first().toPromise();
+    const transaction = await this.getTransaction(user, account, transactionUid).first().toPromise();
+    
+    if (transaction.executionDate < new Date()) {
+      account.balance -= transaction.amount;
+      this.addAccount(user, account);
+    }
     this.afs.collection('users/' + user.uid + '/accounts/' + accountUid + '/transactions').doc(transactionUid).delete();
   }
 
