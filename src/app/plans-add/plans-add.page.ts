@@ -34,7 +34,7 @@ export class PlansAddPage {
 
     });
   }
-
+  
   inputForm = new FormGroup({
     konto: new FormControl({ value: '', disabled: false }),
     gesamtbetrag: new FormControl({ value: '', disabled: false }),
@@ -50,6 +50,9 @@ export class PlansAddPage {
   myDate: Date;
   rule: RRule;
 
+  /**
+   * 
+   */
   async presentSavingsPlan() {
     const gesamtbetrag: number = this.inputForm.value['gesamtbetrag'];
     const intervall: number = this.inputForm.value['intervall'];
