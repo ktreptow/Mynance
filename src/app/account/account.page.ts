@@ -7,6 +7,9 @@ import { NavController } from '@ionic/angular';
 import { DataPassing } from '../core/datapassing';
 import { Transaction } from '../core/transaction';
 
+/** Komponente zum Anzeigen einer Konto-Detailansicht. Hier finden sich die 
+   Transaktionen sowie die Möglichkeit zum Anlegen einer neuen. 
+*/
 @Component({
   selector: 'app-account',
   templateUrl: './account.page.html',
@@ -35,11 +38,25 @@ export class AccountPage implements OnInit {
 
   }
 
+  /** Methode zum Öffnen einer Transaktion aus der Kontoansicht heraus. 
+   Über den datapassing Provider wird die gewählte Transaktion zwischengespeichert
+   und danach auf die Transaktionsdetailseite geleitet.
+
+   @param transaction: Transaktion, die geöffnet werden soll
+  */
   openTransaction(transaction) {
     this.datapassing.transaction = transaction
     this.navCtrl.navigateForward('/transaction')
   }
 
+  /** Diese Methode wird aufgerufen, wenn einer der Buttons zum hinzufügen einer Transaction
+   angeklickt wird. Je nachdem, ob auf den '-' oder '+' Button geklickt wurde, wird ein boolean 
+   Wert an die 'addTransaction'-Maske weitergegeben, der einen Plus bzw Minuswert der Transaktionssumme angibt.  
+   Ebenfalls wird das aktuelle Konto mitgegeben. 
+
+  
+   @param value: Wert zum Ermitteln von Plus- oder Minus-Transaktionen.  Der Wert muss entweder '-' oder '+' sein
+  */
   addTransaction(value) {
     if (value == "-") {
       this.datapassing.positive = false;

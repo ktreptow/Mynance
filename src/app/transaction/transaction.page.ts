@@ -3,6 +3,9 @@ import { NavController } from '@ionic/angular';
 import { DataPassing } from '../core/datapassing';
 import { Transaction } from '../core/transaction';
 
+/** Detailansicht einer Transaktion. Hier wird über den datapassing Provider eine Transaktion 
+   übermittelt, die im HTML dieser Seite angezeigt werden kann. 
+*/
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.page.html',
