@@ -81,17 +81,17 @@ export class AddTransactionPage implements OnInit {
 
 
     if (!this.dauerauftrag) {
-      this.persistenceService.addTransaction(this.user,
+      this.persistenceService.setTransaction(this.user,
         {
           amount: this.amount, creationDate: this.today,
           executionDate: this.executionDate, category: this.category, accountUid: this.account.uid
         })
       if (this.executionDate === this.today) {
         this.account.balance += this.amount;
-        this.persistenceService.addAccount(this.user, this.account);
+        this.persistenceService.setAccount(this.user, this.account);
       }
     } else {
-      this.persistenceService.addRepeatingTransaction(this.user,
+      this.persistenceService.setRepeatingTransaction(this.user,
         {
           purpose: this.purpose, startDate: this.startDate, endDate: this.endDate,
           amount: this.amount, category: this.category, accountUid: this.account.uid

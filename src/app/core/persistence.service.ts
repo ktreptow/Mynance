@@ -16,7 +16,7 @@ export class PersistenceService {
 
   constructor(private afs: AngularFirestore) { }
 
-  addAccount(user: User, account: Account) {
+  setAccount(user: User, account: Account) {
     if (!account.uid) {
       account.uid = this.afs.createId();
     }
@@ -31,7 +31,7 @@ export class PersistenceService {
     return this.afs.doc<Account>('users/' + user.uid + '/accounts/' + accountUid).valueChanges();
   }
 
-  addTransaction(user: User, transaction: Transaction) {
+  setTransaction(user: User, transaction: Transaction) {
     if (!transaction.uid) {
       transaction.uid = this.afs.createId();
     }
@@ -45,7 +45,7 @@ export class PersistenceService {
     
     if (transaction.executionDate < new Date()) {
       account.balance -= transaction.amount;
-      this.addAccount(user, account);
+      this.setAccount(user, account);
     }
     this.afs.collection('users/' + user.uid + '/accounts/' + accountUid + '/transactions').doc(transactionUid).delete();
   }
@@ -64,7 +64,7 @@ export class PersistenceService {
     ).valueChanges();
   }
 
-  addSavingsPlan(user: User, savingsPlan: SavingsPlan, rrule?: RRule) {
+  setSavingsPlan(user: User, savingsPlan: SavingsPlan, rrule?: RRule) {
     if (!savingsPlan.transactionUids) {
       savingsPlan.transactionUids = [];
       rrule.all().forEach(date => {
@@ -77,7 +77,7 @@ export class PersistenceService {
           category: 'SAVING',
           accountUid: savingsPlan.accountUid
         };
-        this.addTransaction(user, transaction);
+        this.setTransaction(user, transaction);
         savingsPlan.transactionUids.push(transaction.uid);
       });
     }
@@ -102,7 +102,11 @@ export class PersistenceService {
     const now = new Date();
     for (let transactionUid of savingsPlan.transactionUids.reverse()) {
       let transaction = await this.getTransaction(user, account, transactionUid).first().toPromise();
+      if (!transaction) {
+        continue;
+      }
       if (transaction.executionDate <= now) {
+        console.log('continue');
         break;
       }
       this.deleteTransaction(user, transaction.accountUid, transaction.uid);
@@ -111,7 +115,7 @@ export class PersistenceService {
     this.afs.collection('users/' + user.uid + '/savingsPlans').doc(savingsPlan.uid).delete();
   }
 
-  addRepeatingTransaction(user: User, repeatingTransaction: RepeatingTransaction, rrule?: RRule) {
+  setRepeatingTransaction(user: User, repeatingTransaction: RepeatingTransaction, rrule?: RRule) {
     if (!repeatingTransaction.transactionUids || repeatingTransaction.transactionUids.length === 0) {
       repeatingTransaction.transactionUids = [];
       rrule.all().forEach(date => {
@@ -124,7 +128,7 @@ export class PersistenceService {
           category: repeatingTransaction.category,
           accountUid: repeatingTransaction.accountUid
         };
-        this.addTransaction(user, transaction);
+        this.setTransaction(user, transaction);
         repeatingTransaction.transactionUids.push(transaction.uid);
       });
     }
